@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'byebug'
 require 'active_model'
 require_relative 'controllers/game'

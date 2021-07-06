@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Controllers
   class Game
     attr_accessor :board, :size
 
-    def initialize(size = 3)
+    def initialize(size = 9)
       @size = size
       @board = Models::Board.new(size)
     end
@@ -10,7 +12,7 @@ module Controllers
     def start
       # Setup game
       finished = false
-      board.set_mines
+      board.set_mines(2)
       board.set_values
       puts board.to_s
 
@@ -19,6 +21,8 @@ module Controllers
         puts
         puts 'Enter cell "A0":'
         move = gets
+
+        return if ['EXIT', 'Q'].include? move.chomp.upcase
 
         # Reveal move and print board
         column, row = extract_args(move.chomp)
